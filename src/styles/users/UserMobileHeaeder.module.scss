@@ -18,7 +18,7 @@
     position: fixed;
     background: #f7f9fc;
     width: 100%;
-    z-index: 19;
+    z-index: 100;
   }
 
   header {
@@ -49,11 +49,26 @@
   .nav {
     height: 100vh;
     position: fixed;
-    background-color: #f7f9fc;
     top: 80px;
     width: 93%;
-
+    
+    .logout {
+      margin-top: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--red, #ff1414);
+      font-size: 20px;
+      line-height: 140%;
+      position: absolute;
+      bottom: 0%;
+      width: 100%;
+    }
+    
     ul {
+    height: 45vh;
+      background-color: #f7f9fc;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -78,5 +93,25 @@
         }
       }
     }
+  }
+}
+.filterComponentContainer {
+  background: #fff;
+  z-index: 88;
+  transform: translateX(0);
+  transition: transform 1s ease;
+  width: 25%;
+  box-sizing: border-box;
+
+  @media screen and (max-width: 600px) {
+    transform: translateY(-200%);
+    width: 100%;
+    position: absolute;
+  }
+}
+
+.visibleFilter {
+  .filterComponentContainer {
+    transform: translateX(0);
   }
 }

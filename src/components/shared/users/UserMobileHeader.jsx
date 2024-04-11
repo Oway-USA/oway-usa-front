@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import s from "@/styles/users/UserMobileHeaeder.module.scss";
-import { Avatar, Badge, Button } from "@nextui-org/react";
+import c from "@/styles/components/layout/Header.module.scss";
+import { Badge, Button } from "@nextui-org/react";
 import useNotification from "@/hooks/admin/useNotification";
 import { NotificationIcon } from "../admin/NotificationIcon";
 import { useRouter } from "next/router";
@@ -8,6 +9,7 @@ import useUserData from "@/hooks/user/useUserData";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import Link from "next/link";
 import useLogout from "@/hooks/auth/useLogout";
+import ModalUserMobil from "@/components/partials/ModalUserMobil";
 
 export default function UserMobileHeader({ children }) {
   const { products } = useNotification();
@@ -29,7 +31,7 @@ export default function UserMobileHeader({ children }) {
     },
     {
       href: "/user/biling",
-      label: "Билинг",
+      label: "Оплата",
       icons: "/assets/icons/user-icons/biling.svg",
     },
     {
@@ -39,7 +41,7 @@ export default function UserMobileHeader({ children }) {
     },
     {
       href: "/user/warehouses",
-      label: "Адерса складов",
+      label: "Адреса складов",
       icons: "/assets/icons/user-icons/склад.svg",
     },
     {
@@ -58,7 +60,10 @@ export default function UserMobileHeader({ children }) {
     <div className={s.container}>
       <div className={s.header_container}>
         <header>
-          <img src="/assets/icons/logo.svg" alt="" />
+          <Link href="/">
+            <img src="/assets/icons/logo.svg" alt="" />
+          </Link>
+
           <div>
             <Badge
               content={products?.total_not_checked_notifications}
@@ -89,26 +94,20 @@ export default function UserMobileHeader({ children }) {
             </div>
           </div>
         </header>
-        {isNavOpen ? (
-          <nav className={s.nav}>
-            <ul>
-              {links.map((link) => (
-                <li
-                  className={isActive(link.href) ? s.active : ""}
-                  key={link.href}
-                  onClick={toggleNav}
-                >
-                  <img
-                    className={isActive(link.href) ? s.active_icon : ""}
-                    src={link.icons}
-                    alt=""
-                  />
-                  <Link href={link.href}>{link.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        ) : null}
+        <div
+          className={`${s.nav} ${
+            isNavOpen ? s.visibleFilter : ''
+          }`}
+        >
+          <div className={`${s.filterComponentContainer}`}>
+            <ModalUserMobil 
+              links={links} 
+              isActive={isActive}
+              logout={logout}
+              toggleNav={toggleNav}
+            />
+          </div>
+        </div>
       </div>
 
       <main className={s.pages_container}>{children}</main>

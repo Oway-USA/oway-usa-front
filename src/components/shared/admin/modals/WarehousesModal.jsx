@@ -5,6 +5,7 @@ import { RxCross1 } from "react-icons/rx";
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function WerehousesModal({ onClose, warehouse }) {
+  console.log(warehouse);
   return (
     <div
       className={s.modal_backdrop}

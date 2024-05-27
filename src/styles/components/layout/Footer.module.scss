@@ -123,6 +123,18 @@
         flex-direction: column;
         gap: 32px;
         align-items: center;
+        .footer_inner_block{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .footer_inner_block_info{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
+        }
         .footer_inner_block1 {
           display: flex;
           border-bottom: 0px solid #001526;

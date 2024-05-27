@@ -8,6 +8,7 @@ export default function Illinois() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
   const accessToken = getCookie("accessToken");
 
@@ -36,7 +37,9 @@ export default function Illinois() {
     };
     fetchData();
   }, []);
+
   console.log(currentItem);
+
   const updateData = async (updatedData) => {
     try {
       const response = await axios.put(
@@ -59,6 +62,28 @@ export default function Illinois() {
   const handleUpdateClick = (item) => {
     setCurrentItem(item);
     setModalOpen(true);
+  };
+
+  const deleteData = async (id) => {
+    try {
+      await axios.delete(
+        `https://api-owayusa.com/api/otside_of_illinois/update_delete/${id}/`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      setData((prevData) => prevData.filter((item) => item.id !== id));
+      setDeleteModalOpen(false);
+    } catch (err) {
+      console.error("Ошибка при удалении данных:", err);
+    }
+  };
+
+  const handleDeleteClick = (item) => {
+    setCurrentItem(item);
+    setDeleteModalOpen(true);
   };
 
   const Modal = ({ item, onClose, onSave }) => {
@@ -132,6 +157,17 @@ export default function Illinois() {
     );
   };
 
+  const DeleteConfirmationModal = ({ item, onClose, onDelete }) => (
+    <div className={s.qwemodalBackdrop}>
+      <div className={s.qwemodalContent}>
+        <h2>Подтверждение удаления</h2>
+        <p>Вы уверены, что хотите удалить элемент {item.full_name}?</p>
+        <button onClick={() => onDelete(item.id)}>Удалить</button>
+        <button onClick={onClose}>Отмена</button>
+      </div>
+    </div>
+  );
+
   return (
     <div className={s.warehouses_page}>
       {loading ? (
@@ -165,6 +201,12 @@ export default function Illinois() {
                   >
                     Обновить
                   </button>
+                  <button
+                    onClick={() => handleDeleteClick(item)}
+                    className={s.btn}
+                  >
+                    Удалить
+                  </button>
                 </td>
               </tr>
             ))}
@@ -176,6 +218,13 @@ export default function Illinois() {
           item={currentItem}
           onClose={() => setModalOpen(false)}
           onSave={updateData}
+        />
+      )}
+      {deleteModalOpen && (
+        <DeleteConfirmationModal
+          item={currentItem}
+          onClose={() => setDeleteModalOpen(false)}
+          onDelete={deleteData}
         />
       )}
     </div>

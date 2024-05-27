@@ -1,7 +1,6 @@
 import React from "react";
 import s from "@/styles/components/layout/Footer.module.scss";
 import Link from "next/link";
-import Illinois from "@/pages/size-chart/Illinois";
 
 export default function Footer() {
   const Mobile = () => {

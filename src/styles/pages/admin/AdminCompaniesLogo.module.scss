@@ -68,3 +68,30 @@
 .modal_content button:last-child {
   margin-right: 0;
 }
+
+@media screen and (max-width: 900px) {
+  .logo_container {
+    grid-template-columns: repeat(1, 1fr);
+    .logo_card {
+      padding: 12px;
+
+      .logo_image {
+        max-height: 100px;
+        max-width: 200px;
+        img {
+          width: 100%;
+        }
+      }
+
+      .btns {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+          width: 18px;
+        }
+      }
+    }
+  }
+}

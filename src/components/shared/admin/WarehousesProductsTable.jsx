@@ -47,62 +47,97 @@ export default function WarehousesProductsTable({
   if (error) {
     return <div>Error: {error}</div>;
   }
-  console.log(warehouses);
+  // console.log(warehouses);
   return (
     <div>
       <table>
         <thead>
           <tr>
-            <th>Пользователь</th>
-            <th>Название посылки</th>
-            <th>Дата отправки</th>
-            <th>Дата прибытия</th>
-            <th>Вес (кг)</th>
-            <th>Трек-номер</th>
-            <th>Статус</th>
-            <th>Действие</th>
+            <th className={s.th0}>
+              {" "}
+              <input type="checkbox" /> Название товара
+            </th>
+            <th className={s.th1}>Дата отправки</th>
+            <th className={s.th1}>Дата прибытия</th>
+            <th className={s.th2}>Вес (кг)</th>
+            <th className={s.th1}>Трек-номер</th>
+            <th className={s.th1}>Статус</th>
+            <th className={s.th3}>Действие</th>
           </tr>
         </thead>
         <tbody>
           {filteredWarehouses?.map((warehouse) => (
-            <tr
-              className={warehouse.is_parcels === true ? s.parcel_tr : ""}
-              key={warehouse.id}
+            <div
+              className={warehouse.is_parcels === true ? s.parcel_tr : s.border}
             >
-              <td style={{ fontWeight: "bold" }}>
-                #{warehouse.unique_id_user}
-              </td>
-              <td>{warehouse.name}</td>
-              <td>{warehouse.date_sent}</td>
-              <td>{warehouse.date_arrived}</td>
-              <td>{warehouse.weight}</td>
-              <td>{warehouse.track_number}</td>
-              <td
-                style={{
-                  color:
-                    warehouse.status?.name === "Доставлено"
-                      ? "#06DB02"
-                      : "inherit",
-                }}
-              >
-                {warehouse.status?.name}
-              </td>
-              <td className="flex items-center">
-                <button
-                  className={s.btn}
-                  onClick={() => handleDetailsClick(warehouse)}
-                >
-                  Подробнее
-                </button>
-                <button
-                  style={{ marginLeft: "10px" }}
-                  className={s.btn}
-                  onClick={() => handleDeleteConfirmation(warehouse)}
-                >
-                  Удалить
-                </button>
-              </td>
-            </tr>
+              <div className={s.df}>
+                <tr key={warehouse.id}>
+                  <td className={s.th0}>
+                    <input type="checkbox" />
+                    {warehouse.name}
+                  </td>
+                  <td className={s.th1}>{warehouse.date_sent}</td>
+                  <td className={s.th1}>{warehouse.date_arrived}</td>
+                  <td className={s.th2}>{warehouse.weight}</td>
+                  <td className={s.th1}>{warehouse.track_number}</td>
+                  <td
+                    className={s.th1}
+                    style={{
+                      color:
+                        warehouse.status?.name === "Доставлено"
+                          ? "#06DB02"
+                          : "inherit",
+                    }}
+                  >
+                    {warehouse.status?.name}
+                  </td>
+                  <td className={s.button}>
+                    <button
+                      className={s.btn}
+                      onClick={() => handleDetailsClick(warehouse)}
+                    >
+                      Подробнее
+                    </button>
+                    <img
+                      className={s.delete}
+                      onClick={() => handleDeleteConfirmation(warehouse)}
+                      src="/assets/icons/delete.svg"
+                      alt="Delete"
+                    />
+                    <img
+                      onClick={() => handleDeleteConfirmation(warehouse)}
+                      className={s.edit}
+                      src="/assets/icons/edit.svg"
+                      alt="Edit"
+                    />
+                  </td>
+                </tr>
+                <div className={s.button1}>
+                  <img
+                    className={s.delete}
+                    onClick={() => handleDeleteConfirmation(warehouse)}
+                    src="/assets/icons/delete.svg"
+                    alt="Delete"
+                  />
+                  <img
+                    onClick={() => handleDeleteConfirmation(warehouse)}
+                    className={s.edit}
+                    src="/assets/icons/edit.svg"
+                    alt="Edit"
+                  />
+                </div>
+              </div>
+              <div className={s.dn}>
+                <div>
+                  <button
+                    className={s.btn}
+                    onClick={() => handleDetailsClick(warehouse)}
+                  >
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
           ))}
         </tbody>
       </table>

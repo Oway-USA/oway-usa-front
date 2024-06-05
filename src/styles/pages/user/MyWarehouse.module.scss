@@ -99,5 +99,30 @@
 }
 
 .my::-webkit-scrollbar {
-  display: none; /* Скрывает скроллбары в Webkit-браузерах */
+  display: none;
+}
+@media screen and (max-width: 900px) {
+  .my {
+    .filters {
+      display: none;
+    }
+    table {
+      tr {
+        th {
+          display: none;
+        }
+      }
+    }
+    tbody {
+      tr {
+        // flex-wrap: wrap;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important;
+        td {
+          padding: 12px !important;
+        }
+      }
+    }
+  }
 }

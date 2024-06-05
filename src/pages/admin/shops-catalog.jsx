@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import CountryTabs from "@/components/shared/admin/catalog/CountryTabs";
 import ShopsCategory from "@/components/shared/admin/catalog/ShopsCategory";
 import ShopsList from "@/components/shared/admin/catalog/ShopsList";
@@ -10,10 +10,19 @@ export default function AdminShopsPage() {
 
   return (
     <div>
-      <CountryTabs setSelectedCountry={setSelectedCountry} setSelectedCategory={setSelectedCategory}/>
+      <CountryTabs
+        setSelectedCountry={setSelectedCountry}
+        setSelectedCategory={setSelectedCategory}
+      />
       <section className={s.shops_block}>
-        <ShopsCategory selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
-        <ShopsList selectedCategory={selectedCategory} selectedCountry={selectedCountry} />
+        <ShopsCategory
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+        <ShopsList
+          selectedCategory={selectedCategory}
+          selectedCountry={selectedCountry}
+        />
       </section>
     </div>
   );

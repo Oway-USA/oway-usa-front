@@ -119,3 +119,12 @@
 .modal_content button:last-child {
   margin-right: 0;
 }
+
+@media screen and (max-width: 900px) {
+  .card {
+    // flex-direction: column;
+  }
+  .cards_list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

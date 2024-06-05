@@ -122,6 +122,7 @@
       font-weight: 400;
       line-height: 140%;
       transition: 0.3s;
+      width: 100%;
     }
 
     .btn:hover {
@@ -131,6 +132,7 @@
 
     thead {
       tr {
+        display: flex;
         th {
           color: var(--black, #001526);
           font-size: 14px;
@@ -148,10 +150,10 @@
     tbody {
       .parcel_tr {
         background: #ebf6ff;
+        border-bottom: 1px solid #027ddb33;
       }
       tr {
-        border-bottom: 1px solid #027ddb33;
-
+        display: flex;
         td {
           color: var(--black, #001526);
           font-size: 14px;
@@ -168,7 +170,29 @@
     }
   }
 }
-
+.border {
+  border-bottom: 1px solid #027ddb33;
+}
+.th1 {
+  width: 150px;
+}
+.th0 {
+  width: 190px;
+  display: flex;
+  gap: 10px;
+  input {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #a4a4a4;
+    border-radius: 4px;
+  }
+}
+.th2 {
+  width: 90px;
+}
+.th3 {
+  width: 220px;
+}
 .qwemodalBackdrop {
   position: fixed;
   top: 0;
@@ -201,7 +225,38 @@
     margin-top: 12px;
   }
 }
-
+.button,
+.button1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  gap: 10px;
+  .delete {
+    padding: 12px;
+    border-radius: 8px;
+    background: #ffe7e7;
+    img {
+      width: 12px;
+      height: 12px;
+    }
+  }
+  .edit {
+    padding: 12px;
+    border-radius: 8px;
+    background: #e7efff;
+    img {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}
+.button1 {
+  display: none;
+}
+.dn {
+  display: none;
+}
 .qwemodalContent {
   background-color: white;
   padding: 20px;
@@ -286,5 +341,61 @@
   background-color: #ccc;
   &:hover {
     background-color: darken(#ccc, 10%);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .dn {
+    display: flex;
+    width: 100%;
+  }
+  .button {
+    display: none;
+  }
+  .df {
+    display: flex;
+  }
+  .button1 {
+    display: flex;
+    align-items: flex-start;
+    width: 100px;
+    gap: 10px;
+  }
+  .border {
+    padding: 12px;
+  }
+  .th0,
+  .th1,
+  .th2,
+  .th3 {
+    width: 50%;
+    input {
+      display: none;
+    }
+  }
+  .warehouses_page {
+    .filters {
+      display: none;
+    }
+    table {
+      tr {
+        th {
+          display: none;
+        }
+      }
+    }
+    tbody {
+      .parcel_tr {
+        padding: 12px;
+      }
+      tr {
+        flex-wrap: wrap;
+        // display: grid;
+        // grid-template-columns: repeat(2, 1fr) !important;
+        td {
+          padding: 12px !important;
+        }
+      }
+    }
   }
 }

@@ -6,7 +6,7 @@ import ChoiceInputSelect from "./all/ChoiceInputSelect";
 const options = {
   status: ["в складе", "готов к выдаче", "в пути"],
   country: ["Россия", "Америка", "Кыргызстан"],
-  default: ["Option 1", "Option 2", "Option 3"],
+  default: ["Option 1", "Optiffffon 2", "Option 3"],
 };
 
 const inputComponents = (handleSearch, inputs) => [

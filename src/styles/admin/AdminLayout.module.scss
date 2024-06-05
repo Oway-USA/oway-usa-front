@@ -144,12 +144,35 @@
 }
 
 .admin_pages {
-  margin-left: 296px; /* Сместить контент вправо, чтобы не перекрывался sidebar */
-  width: calc(100vw - 296px); /* Уменьшить ширину на ширину sidebar */
+  margin-left: 296px;
+  width: calc(100vw - 296px);
   background: var(--bue_light_2, #f7f9fc);
 
   main {
-    height: calc(110vh - 84px); /* Задать высоту для возможности скролла */
+    height: calc(110vh - 84px);
     padding: 24px;
+  }
+}
+.adminheader {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .adminheader {
+    display: block;
+  }
+  .layout {
+    .sidebar {
+      display: none;
+    }
+    .admin_pages {
+      // margin-left: 0px;
+      // width: 100%;
+      // background: var(--bue_light_2, #f7f9fc);
+      display: none;
+    }
+    .header {
+      display: none;
+    }
   }
 }

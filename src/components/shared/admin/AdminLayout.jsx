@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import AdminHeader from "./AdminHeader";
 import useLogout from "@/hooks/auth/useLogout";
+import AdminMobileHeader from "./AdminMobileHeader";
 
 export default function AdminLayout({ children }) {
   const router = useRouter();
@@ -86,6 +87,9 @@ export default function AdminLayout({ children }) {
               </button>
             </ul>
           </nav>
+        </div>
+        <div className={s.adminheader}>
+          <AdminMobileHeader>{children}</AdminMobileHeader>
         </div>
         <div className={s.admin_pages}>
           <AdminHeader />

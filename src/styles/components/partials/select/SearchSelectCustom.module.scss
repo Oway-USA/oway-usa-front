@@ -1,0 +1,33 @@
+.selectContainer {
+  width: 300px;
+  border: 1px solid #027ddb;
+  position: relative;
+  cursor: pointer;
+  border-radius: 6px;
+  user-select: none;
+}
+
+.selectedOption {
+  padding: 10px;
+  //   background-color: #fff;
+  //   border-bottom: 1px solid #027ddb;
+}
+
+.optionsContainer {
+  position: absolute;
+  width: 100%;
+  //   border: 1px solid #027ddb;
+  background-color: white;
+  z-index: 10;
+}
+
+.option {
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  //   &:hover {
+  //     border-radius: 6px;
+  //     background-color: #027ddb;
+  //     color: #fff;
+  //   }
+}

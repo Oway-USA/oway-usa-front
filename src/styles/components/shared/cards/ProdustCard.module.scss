@@ -101,3 +101,9 @@
 .modal_content button:last-child {
   margin-right: 0;
 }
+
+@media screen and (max-width: 900px) {
+  .products_list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

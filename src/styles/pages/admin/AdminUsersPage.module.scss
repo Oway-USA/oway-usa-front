@@ -129,6 +129,7 @@
       border-radius: 12px;
       border: 1px solid var(--blue, #027ddb);
       padding: 10px 36px;
+      width: 100%;
       color: var(--black, #001526);
       font-size: 14px;
       font-style: normal;
@@ -144,6 +145,8 @@
 
     thead {
       tr {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
         th {
           color: var(--black, #001526);
           font-size: 14px;
@@ -159,8 +162,8 @@
     }
     tbody {
       tr {
-        border-bottom: 1px solid #a2a2a2;
-
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
         td {
           color: var(--black, #001526);
           font-size: 14px;
@@ -172,6 +175,42 @@
 
         &:last-child {
           border-bottom: none;
+        }
+      }
+    }
+  }
+}
+.border {
+  border-bottom: 1px solid #a2a2a2;
+}
+.dn {
+  display: none;
+}
+@media screen and (max-width: 900px) {
+  .border {
+    padding: 12px;
+  }
+  .dn {
+    display: block;
+  }
+  .dn1 {
+    display: none;
+  }
+  .users_page {
+    table {
+      tr {
+        th {
+          display: none;
+        }
+      }
+    }
+    tbody {
+      tr {
+        // flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important;
+        td {
+          padding: 12px !important;
         }
       }
     }

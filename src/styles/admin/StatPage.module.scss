@@ -14,3 +14,14 @@
     gap: 20px;
   }
 }
+
+@media screen and (max-width: 900px) {
+  .stat_page {
+    .first_block {
+      flex-direction: column;
+    }
+    .second_block {
+      flex-direction: column;
+    }
+  }
+}

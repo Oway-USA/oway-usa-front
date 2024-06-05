@@ -113,7 +113,14 @@
     position: absolute;
   }
 }
-
+.adminheader {
+  display: none;
+}
+@media screen and (max-width: 900px) {
+  .adminheader {
+    display: block;
+  }
+}
 .visibleFilter {
   .filterComponentContainer {
     transform: translateX(0);

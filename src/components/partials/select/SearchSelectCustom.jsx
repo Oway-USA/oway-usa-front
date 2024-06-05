@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import s from "@/styles/components/partials/select/SearchSelectCustom.module.scss";
 import useLocalStorage from "./useLocalStorage";
 import { options, inputComponents } from "./inputComponents";
@@ -36,6 +36,8 @@ const CustomSelect = () => {
     ""
   );
 
+  const dropdownRef = useRef(null);
+
   const inputs = {
     textInput,
     numberInput,
@@ -52,12 +54,20 @@ const CustomSelect = () => {
   };
 
   const toggleDropdown = (e) => {
-    setIsOpen((prev) => !prev);
+    setIsOpen((prev) => {
+      const newState = !prev;
+      if (!newState) {
+        setSelectedComponent(null);
+        setDisplayText("Поиск");
+      }
+      return newState;
+    });
     e.stopPropagation();
   };
 
   const closeDropdown = (e) => {
     setIsOpen(false);
+    setSelectedComponent(null);
     setDisplayText("Поиск");
     e.stopPropagation();
   };
@@ -109,8 +119,32 @@ const CustomSelect = () => {
     }
   };
 
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsOpen(false);
+      setSelectedComponent(null);
+      setDisplayText("Поиск");
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
-    <div className={s.selectContainer} onClick={toggleDropdown}>
+    <div
+      className={s.selectContainer}
+      onClick={toggleDropdown}
+      ref={dropdownRef}
+    >
       <div className={s.selectedOption}>
         {selectedComponent ? selectedComponent : displayText}
       </div>

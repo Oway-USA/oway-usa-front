@@ -32,8 +32,13 @@ export default function WarehouseProductsModal() {
 
   const toggleModal = () => setIsOpen(!isOpen);
   const { countries } = useCountries();
+
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
+  };
+
+  const previousStep = () => {
+    setCurrentStep(currentStep - 1);
   };
 
   const [selectedOption, setSelectedOption] = useState("");
@@ -77,6 +82,7 @@ export default function WarehouseProductsModal() {
       }));
     }
   };
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setFormData((prevData) => ({
@@ -121,6 +127,7 @@ export default function WarehouseProductsModal() {
     setCurrentStep(1);
     setIsOpen(false);
   };
+
   const closeModal = () => {
     setIsOpen(false);
   };
@@ -134,6 +141,9 @@ export default function WarehouseProductsModal() {
             handleChange={handleChange}
             handleImageChange={handleImageChange}
             nextStep={nextStep}
+            previousStep={previousStep}
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
             closeModal={closeModal}
             countries={countries}
             selectedOption={selectedOption}
@@ -146,6 +156,9 @@ export default function WarehouseProductsModal() {
             formData={formData}
             handleChange={handleChange}
             nextStep={nextStep}
+            previousStep={previousStep}
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
             countries={countries1}
             selectedOption={selectedOption1}
             setSelectedOption={setSelectedOption1}
@@ -156,6 +169,8 @@ export default function WarehouseProductsModal() {
           <Step3
             formData={formData}
             handleChange={handleChange}
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
             handleSubmit={handleSubmit}
           />
         );
@@ -182,14 +197,40 @@ const Step1 = ({
   handleChange,
   handleImageChange,
   nextStep,
+  currentStep,
   countries,
   selectedOption,
   closeModal,
   setSelectedOption,
+  setCurrentStep,
 }) => (
   <div className={c.step}>
     <div className={c.steps_progress}>
-      <img src="/assets/images/step1.svg" alt="step 1" />
+      <div className={c.line}></div>
+      <button
+        type="button"
+        className={currentStep >= 1 ? `${c.active_step}` : ""}
+        onClick={() => setCurrentStep(1)}
+      >
+        1
+      </button>
+      <div className={c.line}></div>
+      <button
+        type="button"
+        className={currentStep >= 2 ? `${c.active_step}` : ""}
+        onClick={() => setCurrentStep(2)}
+      >
+        2
+      </button>
+      <div className={c.line}></div>
+      <button
+        type="button"
+        className={currentStep >= 3 ? `${c.active_step}` : ""}
+        onClick={() => setCurrentStep(3)}
+      >
+        3
+      </button>
+      <div className={c.line}></div>
     </div>
     <form action="" className={s.step_form}>
       <div className={c.first_block}>
@@ -312,13 +353,39 @@ const Step2 = ({
   formData,
   handleChange,
   nextStep,
+  currentStep,
   countries,
   selectedOption,
   setSelectedOption,
+  setCurrentStep,
 }) => (
   <div className={c.step}>
     <div className={c.steps_progress}>
-      <img src="/assets/images/step2.svg" alt="step 2" />
+      <div className={c.line}></div>
+      <button
+        type="button"
+        className={currentStep >= 1 ? `${c.active_step}` : ""}
+        onClick={() => setCurrentStep(1)}
+      >
+        1
+      </button>
+      <div className={c.line}></div>
+      <button
+        type="button"
+        className={currentStep >= 2 ? `${c.active_step}` : ""}
+        onClick={() => setCurrentStep(2)}
+      >
+        2
+      </button>
+      <div className={c.line}></div>
+      <button
+        type="button"
+        className={currentStep >= 3 ? `${c.active_step}` : ""}
+        onClick={() => setCurrentStep(3)}
+      >
+        3
+      </button>
+      <div className={c.line}></div>
     </div>
     <form action="" className={c.first_block}>
       <div>
@@ -371,7 +438,7 @@ const Step2 = ({
   </div>
 );
 
-const Step3 = ({ formData, setFormData, handleChange, handleSubmit }) => {
+const Step3 = ({ handleChange, handleSubmit, currentStep, setCurrentStep }) => {
   const { warehouses } = useWarehousesFull();
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -405,7 +472,31 @@ const Step3 = ({ formData, setFormData, handleChange, handleSubmit }) => {
   return (
     <div className={c.step}>
       <div className={c.steps_progress}>
-        <img src="/assets/images/step3.svg" alt="step 3" />
+        <div className={c.line}></div>
+        <button
+          type="button"
+          className={currentStep >= 1 ? `${c.active_step}` : ""}
+          onClick={() => setCurrentStep(1)}
+        >
+          1
+        </button>
+        <div className={c.line}></div>
+        <button
+          type="button"
+          className={currentStep >= 2 ? `${c.active_step}` : ""}
+          onClick={() => setCurrentStep(2)}
+        >
+          2
+        </button>
+        <div className={c.line}></div>
+        <button
+          type="button"
+          className={currentStep >= 3 ? `${c.active_step}` : ""}
+          onClick={() => setCurrentStep(3)}
+        >
+          3
+        </button>
+        <div className={c.line}></div>
       </div>
       <form action="" className={s.step_form}>
         <div>

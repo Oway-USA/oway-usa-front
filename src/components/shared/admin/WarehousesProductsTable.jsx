@@ -47,7 +47,6 @@ export default function WarehousesProductsTable({
   if (error) {
     return <div>Error: {error}</div>;
   }
-  // console.log(warehouses);
   return (
     <div>
       <table>
@@ -68,6 +67,7 @@ export default function WarehousesProductsTable({
         <tbody>
           {filteredWarehouses?.map((warehouse) => (
             <div
+              key={warehouse.id}
               className={warehouse.is_parcels === true ? s.parcel_tr : s.border}
             >
               <div className={s.df}>
@@ -105,7 +105,7 @@ export default function WarehousesProductsTable({
                       alt="Delete"
                     />
                     <img
-                      onClick={() => handleDeleteConfirmation(warehouse)}
+                      onClick={() => handleDetailsClick(warehouse)}
                       className={s.edit}
                       src="/assets/icons/edit.svg"
                       alt="Edit"
@@ -120,7 +120,7 @@ export default function WarehousesProductsTable({
                     alt="Delete"
                   />
                   <img
-                    onClick={() => handleDeleteConfirmation(warehouse)}
+                    onClick={() => handleDetailsClick(warehouse)}
                     className={s.edit}
                     src="/assets/icons/edit.svg"
                     alt="Edit"

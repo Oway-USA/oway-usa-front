@@ -55,7 +55,7 @@ export default function UsersHeader() {
       return <BankCardsModal />;
     } else if (router.pathname === "/admin/notifications") {
       return <NotificationsModal />;
-    } else if (router.pathname === "/admin/shops-catalog") {
+    } else if (router.pathname === "/admin/shops-catalog-steps") {
       return <AddShopsModal />;
     } else if (router.pathname === "/user/my-parcels") {
       return <MyWarehousesModal />;

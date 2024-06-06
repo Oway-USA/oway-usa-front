@@ -55,7 +55,7 @@ export default function AdminMobileHeader({ children }) {
       icon: "/assets/icons/admin-icons/requests.svg",
     },
     {
-      href: "/admin/shops-catalog",
+      href: "/admin/shops-catalog-steps",
       label: "Каталог сайтов",
       icon: "/assets/icons/admin-icons/сайты.svg",
     },

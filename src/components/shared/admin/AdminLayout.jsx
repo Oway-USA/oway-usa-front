@@ -29,11 +29,6 @@ export default function AdminLayout({ children }) {
       icon: "/assets/icons/admin-icons/уведомления.svg",
     },
     {
-      href: "/admin/products",
-      label: "Горячие предложения",
-      icon: "/assets/icons/admin-icons/товары.svg",
-    },
-    {
       href: "/admin/warehouses",
       label: "Склад",
       icon: "/assets/icons/admin-icons/склад.svg",
@@ -52,11 +47,6 @@ export default function AdminLayout({ children }) {
       href: "/admin/user-parcels",
       label: "Ожидаемые посылки",
       icon: "/assets/icons/calc_icon.svg",
-    },
-    {
-      href: "/admin/companies",
-      label: "Логотипы компаний",
-      icon: "/assets/icons/city.svg",
     },
     {
       href: "/admin/illinois",

@@ -90,7 +90,7 @@ export default function IncommingRequests() {
             <th>Дата отправки заявки</th>
             <th>Статус запроса</th>
             <th>Статус оплаты</th>
-            <th>Подробнее</th>
+            <th>Действия</th>
           </tr>
         </thead>
         <tbody>

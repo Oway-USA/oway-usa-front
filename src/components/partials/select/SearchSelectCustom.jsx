@@ -10,12 +10,16 @@ const storageKeys = {
   nameInput: "nameInput",
   statusInput: "statusInput",
   countryInput: "countryInput",
+  dateInput: "dateInput",
+  weightInput: "weightInput",
 };
 
 const CustomSelect = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedComponent, setSelectedComponent] = useState(null);
   const [displayText, setDisplayText] = useState("Поиск");
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeButton, setActiveButton] = useState(null);
 
   const [textInput, setTextInput] = useLocalStorage(storageKeys.textInput, "");
   const [numberInput, setNumberInput] = useLocalStorage(
@@ -35,7 +39,11 @@ const CustomSelect = () => {
     storageKeys.countryInput,
     ""
   );
-
+  const [dateInput, setDateInput] = useLocalStorage(storageKeys.dateInput, "");
+  const [weightInput, setWeightInput] = useLocalStorage(
+    storageKeys.weightInput,
+    ""
+  );
   const dropdownRef = useRef(null);
 
   const inputs = {
@@ -45,12 +53,16 @@ const CustomSelect = () => {
     nameInput,
     statusInput,
     countryInput,
+    dateInput,
+    weightInput,
     setTextInput,
     setNumberInput,
     setSelectedChoice,
     setNameInput,
     setStatusInput,
     setCountryInput,
+    setDateInput,
+    setWeightInput,
   };
 
   const toggleDropdown = (e) => {
@@ -59,6 +71,7 @@ const CustomSelect = () => {
       if (!newState) {
         setSelectedComponent(null);
         setDisplayText("Поиск");
+        setActiveIndex(null);
       }
       return newState;
     });
@@ -68,6 +81,7 @@ const CustomSelect = () => {
   const closeDropdown = (e) => {
     setIsOpen(false);
     setSelectedComponent(null);
+    setActiveIndex(null);
     setDisplayText("Поиск");
     e.stopPropagation();
   };
@@ -79,6 +93,9 @@ const CustomSelect = () => {
     setNameInput("");
     setStatusInput("");
     setCountryInput("");
+    setDateInput("");
+    setWeightInput("");
+    setActiveIndex(null);
     setSelectedComponent(null);
     setDisplayText("Поиск");
     e.stopPropagation();
@@ -93,12 +110,13 @@ const CustomSelect = () => {
   };
 
   const renderOptions = (optionsToRender, type) => (
-    <div className={s.option}>
+    <div className={s.block}>
       {optionsToRender.map((option, index) => (
         <div key={index} onClick={() => handleSearch(option, type)}>
           {option}
         </div>
       ))}
+      <div className={s.borber}></div>
     </div>
   );
 
@@ -123,6 +141,7 @@ const CustomSelect = () => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsOpen(false);
       setSelectedComponent(null);
+      setActiveIndex(null);
       setDisplayText("Поиск");
     }
   };
@@ -139,42 +158,79 @@ const CustomSelect = () => {
     };
   }, [isOpen]);
 
+  const handleButtonClick = (buttonIndex) => {
+    setActiveButton(buttonIndex);
+  };
+
   return (
-    <div
-      className={s.selectContainer}
-      onClick={toggleDropdown}
-      ref={dropdownRef}
-    >
-      <div className={s.selectedOption}>
-        {selectedComponent ? selectedComponent : displayText}
-      </div>
-      {isOpen && (
-        <div
-          className={s.optionsContainer}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {renderComponentOptions()}
-          {inputComponents(handleSearch, inputs).map(
-            ({ component, displayText }, index) => (
-              <div
-                key={index}
-                className={s.option}
-                onClick={() => setSelectedComponent(component)}
-              >
-                {displayText}
-              </div>
-            )
-          )}
-          <div className={s.buttonContainer}>
-            <button className={s.closeButton} onClick={closeDropdown}>
-              Закрыть
-            </button>
-            <button className={s.resetButton} onClick={resetAllData}>
-              Сбросить
-            </button>
+    <div className={s.main}>
+      <div
+        className={s.selectContainer}
+        onClick={toggleDropdown}
+        ref={dropdownRef}
+      >
+        <div>
+          <div className={s.selectedOption}>
+            {selectedComponent ? selectedComponent : displayText}
+            {isOpen && <div className={s.borber1}></div>}
           </div>
+
+          {isOpen && (
+            <>
+              <div
+                className={s.optionsContainer}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {renderComponentOptions()}
+                {inputComponents(handleSearch, inputs).map(
+                  ({ component, displayText }, index) => (
+                    <>
+                      <div
+                        key={index}
+                        className={`${s.option} ${
+                          index === activeIndex ? s.active : ""
+                        }`}
+                        onClick={() => {
+                          setSelectedComponent(component);
+                          setActiveIndex(index);
+                        }}
+                      >
+                        {displayText}
+                      </div>
+                    </>
+                  )
+                )}
+                <div className={s.buttonContainer}>
+                  <button className={s.closeButton} onClick={closeDropdown}>
+                    Закрыть
+                  </button>
+                  <button className={s.resetButton} onClick={resetAllData}>
+                    Сбросить
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
-      )}
+      </div>
+      <div className={s.onebutton}>
+        <button>Предыдущий склад</button>
+        <button>Следующий склад</button>
+      </div>
+      <div className={s.twobutton}>
+        <button
+          className={activeButton === 0 ? s.activeButton : ""}
+          onClick={() => handleButtonClick(0)}
+        >
+          Новые
+        </button>
+        <button
+          className={activeButton === 1 ? s.activeButton : ""}
+          onClick={() => handleButtonClick(1)}
+        >
+          Старые
+        </button>
+      </div>
     </div>
   );
 };

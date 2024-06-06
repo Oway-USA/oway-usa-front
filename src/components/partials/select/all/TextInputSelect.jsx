@@ -17,6 +17,12 @@ export default function TextInputSelect({ placeholder, onSearch }) {
     onSearch(inputValue);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearchClick(e);
+    }
+  };
+
   return (
     <div className={s.container} onClick={handleInputClick}>
       <input
@@ -24,6 +30,7 @@ export default function TextInputSelect({ placeholder, onSearch }) {
         placeholder={placeholder}
         value={inputValue}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
       />
       <img
         src="/assets/icons/search.svg"

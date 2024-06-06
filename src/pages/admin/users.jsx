@@ -99,7 +99,7 @@ export default function AdminUsersPage() {
                   user.unique_id.includes(searchUniqueId)
               )
               .map((user) => (
-                <div className={s.border}>
+                <div key={user.id} className={s.border}>
                   <tr key={user.id}>
                     <td>{user.first_name}</td>
                     <td>{user.last_name}</td>

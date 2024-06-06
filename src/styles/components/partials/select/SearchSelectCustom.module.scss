@@ -1,33 +1,118 @@
 .selectContainer {
-  width: 300px;
+  width: 400px;
   border: 1px solid #027ddb;
   position: relative;
+  background-color: white;
   cursor: pointer;
   border-radius: 6px;
   user-select: none;
 }
-
+.main {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
 .selectedOption {
-  padding: 10px;
-  //   background-color: #fff;
-  //   border-bottom: 1px solid #027ddb;
+  padding: 12px 24px;
 }
 
 .optionsContainer {
+  width: 400px !important;
+  margin-top: -3px;
+  padding: 0px 12px;
+  margin-left: -1px !important;
   position: absolute;
   width: 100%;
-  //   border: 1px solid #027ddb;
   background-color: white;
   z-index: 10;
+  border-bottom: 1px solid #027ddb;
+  border-right: 1px solid #027ddb;
+  border-left: 1px solid #027ddb;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 .option {
-  padding: 10px;
+  padding: 12px;
   display: flex;
   gap: 10px;
-  //   &:hover {
-  //     border-radius: 6px;
-  //     background-color: #027ddb;
-  //     color: #fff;
-  //   }
+  cursor: pointer;
+}
+.option.active {
+  background: #027ddb;
+  color: #fff;
+  border-radius: 8px;
+}
+.block {
+  padding: 12px;
+  gap: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+}
+.borber {
+  width: 100%;
+  border: 0.7px solid #027ddb;
+}
+.borber1 {
+  margin-top: 10px;
+  width: 100%;
+  border: 0.7px solid #027ddb;
+}
+
+.buttonContainer {
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
+  padding: 12px;
+  button {
+    color: #fff;
+    background: #027ddb;
+    padding: 12px 24px;
+    border-radius: 8px;
+  }
+}
+.onebutton {
+  display: flex;
+  gap: 20px;
+  button {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 1px solid #027ddb;
+    color: #027ddb;
+    padding: 10px;
+    width: 173px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+  }
+}
+
+.twobutton {
+  display: flex;
+  gap: 20px;
+  button {
+    background: #fff;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 1px solid #027ddb;
+    color: #027ddb;
+    padding: 10px;
+    width: 122px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+  }
+  .activeButton {
+    background: #027ddb;
+    color: #fff;
+  }
 }

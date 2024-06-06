@@ -10,7 +10,7 @@ export default function ModalAdminMobil({
   return (
     <ul>
       {links.map((link) => (
-        <Link href={link.href}>
+        <Link href={link.href} key={link.href}>
           <li
             className={isActive(link.href) ? s.active : ""}
             key={link.href}

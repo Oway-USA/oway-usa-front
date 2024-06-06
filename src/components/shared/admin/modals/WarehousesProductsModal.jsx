@@ -44,12 +44,14 @@ export default function WarehouseProductsModal() {
   const [selectedOption, setSelectedOption] = useState("");
 
   const countries1 = [
-    { id: 4, name: "Получен на складе отправителя" },
-    { id: 5, name: "Отправлен" },
-    { id: 6, name: "Получен на складе получателя" },
-    { id: 3, name: "Готов к выдаче" },
-    { id: 7, name: "Отправлено курьерской службой" },
-    { id: 8, name: "Доставлено" },
+    { id: 4, name: "Получен на складе" },
+    { id: 5, name: "Получен в ПВЗ" },
+    // { id: 4, name: "Получен на складе отправителя" },
+    // { id: 5, name: "Отправлен" },
+    // { id: 6, name: "Получен на складе получателя" },
+    // { id: 3, name: "Готов к выдаче" },
+    // { id: 7, name: "Отправлено курьерской службой" },
+    // { id: 8, name: "Доставлено" },
   ];
   const [selectedOption1, setSelectedOption1] = useState("");
 
@@ -407,7 +409,7 @@ const Step2 = ({
           onChange={handleChange}
         />
       </div>
-      <div>
+      {/* <div>
         <label htmlFor="status">Трек код посылки</label>
         <input
           type="number"
@@ -428,7 +430,7 @@ const Step2 = ({
           value={formData.url}
           onChange={handleChange}
         />
-      </div>
+      </div> */}
     </form>
     <button className={c.submit_btn} onClick={nextStep}>
       Продолжить

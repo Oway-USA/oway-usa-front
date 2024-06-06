@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import s from "@/styles/components/partials/select/NumberInputSelect.module.scss";
+import s from "@/styles/components/partials/select/TextInputSelect.module.scss";
 
 export default function NumberInputSelect({ placeholder, onSearch }) {
   const [inputValue, setInputValue] = useState("");
@@ -17,13 +17,20 @@ export default function NumberInputSelect({ placeholder, onSearch }) {
     onSearch(inputValue);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearchClick(e);
+    }
+  };
+
   return (
     <div className={s.container} onClick={handleInputClick}>
       <input
-        type="number"
+        type="text"
         placeholder={placeholder}
         value={inputValue}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
       />
       <img
         src="/assets/icons/search.svg"
